@@ -1,0 +1,10 @@
+{
+  "compilerOptions": {
+    "checkJs": true,
+    "jsx": "react",
+    "moduleResolution": "node",
+    "target": "es6"
+  },
+  "exclude": ["build", "node_modules", "public"],
+  "include": ["src/**/*.js"]
+}
