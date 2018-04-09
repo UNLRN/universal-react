@@ -1,27 +1,27 @@
 import React from 'react';
 import Loadable from 'react-loadable';
-import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 import { hydrate } from 'react-dom';
-import App from '../common/App';
-import reducers from '../common/reducer';
+import createHistory from 'history/createBrowserHistory';
+import configureStore from './configureStore';
+import App from './app/app';
 
 window.main = () => {
-  // Grab the state from a global variable injected into the server-generated HTML
-  const preloadedState = window.__PRELOADED_STATE__;
-
-  // Allow the passed state to be garbage-collected
-  delete window.__PRELOADED_STATE__;
- 
-  // Create Redux store with initial state
-  const store = createStore(reducers, preloadedState);
-
   Loadable.preloadReady().then(() => {
+    const history = createHistory();
+    const preloadedState = window.__PRELOADED_STATE__;
+
+    const store = configureStore(history, preloadedState);
+
+    // Allow the passed state to be garbage-collected
+    delete window.__PRELOADED_STATE__;
+
     hydrate(
       <Provider store={store}>
         <App />
       </Provider>,
-      document.getElementById('root'));
+      document.getElementById('root')
+    );
   });
 };
 
