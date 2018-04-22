@@ -4,6 +4,7 @@ import { Provider } from 'react-redux';
 import { Capture } from 'react-loadable';
 import { getBundles } from 'react-loadable/webpack';
 import serialize from 'serialize-javascript';
+import { renderStylesToString } from 'emotion-server';
 import configureStore from './configureStore';
 import App from '../client/app/app';
 import stats from '../../build/react-loadable.json';
@@ -17,12 +18,14 @@ export default async (req, res) => {
   const store = await configureStore(req, res);
   if (!store) return;
 
-  const markup = renderToString(
-    <Capture report={moduleName => modules.push(moduleName)}>
-      <Provider store={store}>
-        <App />
-      </Provider>
-    </Capture>
+  const markup = renderStylesToString(
+    renderToString(
+      <Capture report={moduleName => modules.push(moduleName)}>
+        <Provider store={store}>
+          <App />
+        </Provider>
+      </Capture>
+    )
   );
 
   const bundles = getBundles(stats, modules);

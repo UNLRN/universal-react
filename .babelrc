@@ -1,4 +1,20 @@
 {
-  "presets": ["razzle/babel"],
-  "plugins": ["react-loadable/babel", "transform-object-rest-spread"]
+  "env": {
+    "production": {
+      "presets": ["razzle/babel"],
+      "plugins": [
+        ["emotion", { "hoist": true }],
+        ["react-loadable/babel"],
+        ["transform-object-rest-spread"]
+      ]
+    },
+    "development": {
+      "presets": ["razzle/babel"],
+      "plugins": [
+        ["emotion", { "sourceMap": true, "autoLabel": true }],
+        ["react-loadable/babel"],
+        ["transform-object-rest-spread"]
+      ]
+    }
+  }
 }
