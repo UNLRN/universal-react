@@ -4,7 +4,7 @@ import { Provider } from 'react-redux';
 import { hydrate } from 'react-dom';
 import createHistory from 'history/createBrowserHistory';
 import configureStore from './configureStore';
-import App from './app/app';
+import App from './features/app/app';
 
 window.main = () => {
   Loadable.preloadReady().then(() => {

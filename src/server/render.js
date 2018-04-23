@@ -6,7 +6,7 @@ import { getBundles } from 'react-loadable/webpack';
 import serialize from 'serialize-javascript';
 import { renderStylesToString } from 'emotion-server';
 import configureStore from './configureStore';
-import App from '../client/app/app';
+import App from '../client/features/app/app';
 import stats from '../../build/react-loadable.json';
 
 // eslint-disable-next-line

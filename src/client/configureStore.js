@@ -2,7 +2,7 @@ import { createStore, applyMiddleware, compose, combineReducers } from 'redux';
 import { connectRoutes } from 'redux-first-router';
 import { createLogger } from 'redux-logger';
 import { routesMap } from './routes';
-import { appReducers } from './app/reducer';
+import { appReducers } from './features/app/reducer';
 
 export default (history, preloadedState) => {
   const { reducer, middleware, enhancer } = connectRoutes(history, routesMap);
